@@ -1,10 +1,10 @@
-# CHANGELOG for simple_setup
+# CHANGELOG for centos
 
-This file is used to list changes made in each version of simple_setup.
+This file is used to list changes made in each version of centos.
 
 ## 0.1.0:
 
-* Initial release of simple_setup
+* Initial release of centos
 
 - - - 
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

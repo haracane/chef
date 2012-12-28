@@ -1,9 +1,12 @@
 WDIR=$(dirname $0)
 
 cd $WDIR
-cp -r chef-repo /var/
-mkdir -p /etc/chef
+sudo cp -r chef-repo /var/
+if [ ! -d /etc/chef ]; then
+  sudo mkdir -p /etc/chef
+fi
 
 echo 'file_cache_path "/tmp/chef-solo"
 cookbook_path ["/var/chef-repo/cookbooks"]
-role_path "/var/chef-repo/role"' > /etc/chef/solo.rb
+role_path "/var/chef-repo/role"' | sudo tee /etc/chef/solo.rb > /dev/null
+

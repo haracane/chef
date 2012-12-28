@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: simple_setup
+# Cookbook Name:: centos
 # Recipe:: default
 #
 # Copyright 2012, YOUR_COMPANY_NAME
