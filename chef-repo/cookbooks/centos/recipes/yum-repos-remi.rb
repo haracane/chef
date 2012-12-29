@@ -1,4 +1,6 @@
-[ "etc/yum.repos.d/remi.repo"].each do |filename|
+[ 
+  "etc/yum.repos.d/remi.repo"
+  ].each do |filename|
   filepath = "/#{filename}"
   template filepath do
     source "#{filename}.erb"
