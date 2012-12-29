@@ -1,5 +1,5 @@
 [ 
-  "etc/yum.repos.d/remi.repo"
+  "etc/yum.repos.d/nginx.repo"
   ].each do |filename|
   filepath = "/#{filename}"
   template filepath do
