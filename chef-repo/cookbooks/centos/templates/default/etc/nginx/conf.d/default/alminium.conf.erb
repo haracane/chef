@@ -1,0 +1,3 @@
+location /alminium {
+  rewrite ^/(.*)?$ https://$host$uri last;
+}
