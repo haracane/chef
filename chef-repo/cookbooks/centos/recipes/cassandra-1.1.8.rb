@@ -1,4 +1,3 @@
-
 execute "download apache-cassandra-1.1.8-bin.tar.gz" do
   user "root"
   cwd "/root/src"
@@ -30,4 +29,23 @@ end
     owner "root"
     mode 0644
   end
+end
+
+[
+  "etc/init.d/cassandra118"
+  ].each do |filename|
+  filepath = "/#{filename}"
+  template filepath do
+    source "#{filename}.erb"
+  end
+  file filepath do
+    owner "root"
+    group "root"
+    mode  "0755"
+  end
+end
+
+service "cassandra118" do
+  supports :start => true, :stop => true, :restart=>true
+  action :enable
 end
