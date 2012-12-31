@@ -1,8 +1,10 @@
 include_recipe "centos::yum-repos-nginx"
 
-package "nginx" do
-  action :install
+execute "yum install nginx" do
+  user "root"
+  command "yum --enablerepo=nginx -y install nginx"
 end
+
 
 ["default.conf", "example_ssl.conf"].each do |filename|
   execute "backup #{filename}" do
