@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <property>
+    <name>fs.default.name</name>
+    <value>hdfs://<%= @hadoop_master %>:8020</value>
+  </property>
+
+  <property>
+     <name>hadoop.tmp.dir</name>
+     <value><%=@name_node_dir%>/hadoop-0.20/cache/${user.name}</value>
+      <description>
+      	default: /tmp/hadoop-${user.name}
+      	cloudera: /var/lib/hadoop-VERSION/cache/${user.name}
+      </description>
+  </property>
+
+  <property>
+     <name>io.compression.codecs</name>
+     <value>org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.BZip2Codec</value>
+  </property>
+
+  <property>
+    <name>webinterface.private.actions</name>
+    <value>true</value>
+  </property>
+
+</configuration>

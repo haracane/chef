@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+<%- processor_count = node[:cpu].size %>
+
+<configuration>
+  <property>
+    <name>mapred.job.tracker</name>
+    <value><%= @hadoop_master %>:8021</value>
+  </property>
+  <property>
+    <name>mapred.map.tasks.speculative.execution</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>mapred.tasktracker.map.tasks.maximum</name>
+    <value><%= processor_count %></value>
+  </property>
+  <property>
+    <name>mapred.tasktracker.reduce.tasks.maximum</name>
+    <value><%= processor_count %></value>
+  </property>
+  <property>
+    <name>mapred.userlog.retain.hours</name>
+    <value>1</value>
+  </property>
+
+</configuration>
