@@ -1,0 +1,6 @@
+if [ "$#" = 2 ] && [ "$1" == "-xe" ] && [ -f "$2" ]; then
+  /bin/bash --login -e $2
+else
+  /bin/bash $*
+fi
+
