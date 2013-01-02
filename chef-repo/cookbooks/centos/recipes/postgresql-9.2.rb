@@ -15,3 +15,11 @@ service "postgresql-9.2" do
   supports :start => true, :stop => true, :restart=>true
   action :enable
 end
+
+[
+  "pg_config"
+].each do |command|
+  link "/usr/bin/#{command}" do
+    to "/usr/pgsql-9.2/bin/#{command}"
+  end
+end
