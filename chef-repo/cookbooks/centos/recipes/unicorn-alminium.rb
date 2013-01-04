@@ -7,6 +7,12 @@ execute "usermod -s /bin/bash apache" do
   command "/usr/sbin/usermod -s /bin/bash apache"
 end
 
+directory "/opt/alminium/pids" do
+  user "apache"
+  group "apache"
+  action :create
+end
+
 [
   "etc/init.d/unicorn-alminium"
   ].each do |filename|
