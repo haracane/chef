@@ -1,0 +1,34 @@
+# description: fcgiwrap is a fast-cgi server
+#
+### BEGIN INIT INFO
+# Provides:          fcgiwrap
+# Required-Start:    $all
+# Required-Stop:     $all
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts fcgiwrap
+# Description:       starts fcgiwrap
+### END INIT INFO
+
+user=www
+
+command=$1
+
+case $command in
+start )
+  echo "/usr/local/fcgiwrap/sbin/fcgiwrap -c2 -s unix:/tmp/fcgiwrap.sock >>/var/log/fcgiwrap/access.log 2>>/var/log/fcgiwrap/error.log" >&2
+  su $user -c "/usr/local/fcgiwrap/sbin/fcgiwrap -c2 -s unix:/tmp/fcgiwrap.sock >>/var/log/fcgiwrap/access.log 2>>/var/log/fcgiwrap/error.log &"
+;;
+stop )
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')](INFO) stop fcgiwrap" >&2
+  for pid in $(pgrep -f 'fcgiwrap'); do
+#    su $user -c "kill -INT $pid"
+    su $user -c "kill $pid"
+  done
+  rm -f /tmp/fcgiwrap.sock
+;;
+restart )
+  $0 stop
+  $0 start
+;;
+esac
