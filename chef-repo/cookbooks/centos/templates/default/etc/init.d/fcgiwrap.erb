@@ -18,7 +18,13 @@ case $command in
 start )
   echo "/usr/local/fcgiwrap/sbin/fcgiwrap -c2 -s unix:/tmp/fcgiwrap.sock >>/var/log/fcgiwrap/access.log 2>>/var/log/fcgiwrap/error.log" >&2
   su $user -c "/usr/local/fcgiwrap/sbin/fcgiwrap -c2 -s unix:/tmp/fcgiwrap.sock >>/var/log/fcgiwrap/access.log 2>>/var/log/fcgiwrap/error.log &"
-  chmod 777 /tmp/fcgiwrap.sock
+  while true; do
+    if [ -f /tmp/fcgiwrap.sock ]; then
+      chmod 777 /tmp/fcgiwrap.sock
+      break
+    fi
+    sleep 1
+  done
 ;;
 stop )
   echo "[$(date '+%Y-%m-%d %H:%M:%S')](INFO) stop fcgiwrap" >&2
