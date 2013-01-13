@@ -1,4 +1,4 @@
-WDIR=$(dirname $0)
+WDIR=$(cd $(dirname $0)/..;pwd)
 
 cd $WDIR
 sudo cp -r chef-repo /var/
@@ -8,5 +8,4 @@ fi
 
 echo 'file_cache_path "/tmp/chef-solo"
 cookbook_path ["/var/chef-repo/cookbooks"]
-role_path "/var/chef-repo/role"' | sudo tee /etc/chef/solo.rb > /dev/null
-
+role_path "/var/chef-repo/roles"' | sudo tee /etc/chef/solo.rb > /dev/null

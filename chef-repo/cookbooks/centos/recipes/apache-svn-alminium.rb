@@ -1,3 +1,7 @@
+include_recipe "centos::apache"
+
+include_recipe "centos::subversion"
+
 [
   "mod_auth_mysql"
   ].each do |pkg|
@@ -7,7 +11,7 @@
 end
 
 [
-  "/opt/alminium/svn"
+  "/var/svn"
   ].each do |dirpath|
   directory dirpath do
     owner "apache"
@@ -17,9 +21,8 @@ end
   end
 end
 
-
 [
-  "etc/httpd/conf.d/svn.conf"
+  "etc/httpd/conf.d/svn-alminium.conf"
   ].each do |filename|
   filepath = "/#{filename}"
   template filepath do
@@ -30,4 +33,9 @@ end
     group "root"
     mode  "0644"
   end
+end
+
+service "httpd" do
+  supports :start => true, :stop => true, :restart=>true
+  action :enable
 end

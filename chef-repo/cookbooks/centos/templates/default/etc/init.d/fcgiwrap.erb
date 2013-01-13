@@ -1,3 +1,4 @@
+<%-@fcgiwrap_user||="www"%>
 # description: fcgiwrap is a fast-cgi server
 #
 ### BEGIN INIT INFO
@@ -10,7 +11,7 @@
 # Description:       starts fcgiwrap
 ### END INIT INFO
 
-user=www
+user=<%=@fcgiwrap_user%>
 
 command=$1
 
