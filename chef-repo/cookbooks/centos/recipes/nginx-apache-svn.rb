@@ -1,11 +1,10 @@
 include_recipe "centos::nginx"
 
-include_recipe "centos::unicorn-alminium"
+include_recipe "centos::apache"
 
 [
-  "etc/nginx/conf.d/unicorn-alminium.conf",
-  "etc/nginx/conf.d/default/alminium.conf",
-  "etc/nginx/conf.d/ssl/alminium.conf"
+  "etc/nginx/conf.d/default/svn.conf",
+  "etc/nginx/conf.d/ssl/svn.conf"
   ].each do |filename|
   filepath = "/#{filename}"
   template filepath do
