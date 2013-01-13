@@ -23,13 +23,16 @@ execute "install fcgiwrap" do
   EOF
 end
 
-user "www" do
+fcgiwrap_user = node[:variables][:fcgiwrap_user] if node[:variables]
+fcgiwrap_user ||= "www"
+
+user fcgiwrap_user do
   action :create
 end
 
 directory "/var/log/fcgiwrap" do
-  user "www"
-  group "www"
+  user fcgiwrap_user
+  group fcgiwrap_user
   action :create
 end
 
@@ -39,6 +42,7 @@ end
   filepath = "/#{filename}"
   template filepath do
     source "#{filename}.erb"
+    variables(node[:variables])
   end
   file filepath do
     owner "root"

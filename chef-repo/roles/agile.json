@@ -1,0 +1,24 @@
+{
+  "name": "agile",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "variables" : {
+      "alminium_rack_path" : "/alminium",
+      "fcgiwrap_user" : "git",
+      "httpd_port" : 8000,
+      "httpd_ssl_port" : 8443
+    }
+  },
+  "override_attributes": {
+    "variables" : {
+    }
+  },
+  "description": "install alminium",
+  "chef_type": "role",
+  "run_list": [
+    "recipe[centos::nginx-unicorn-alminium]",
+    "recipe[centos::nginx-fcgiwrap-git]",
+    "recipe[centos::apache-svn-alminium]",
+    "recipe[centos::nginx-apache-svn]"
+  ]
+}
