@@ -21,6 +21,14 @@ end
   end
 end
 
+link "/var/opt/alminium/git" do
+  to "/var/git"
+end
+
+link "/var/opt/alminium/svn" do
+  to "/var/svn"
+end
+
 [
   "etc/httpd/conf.d/svn-alminium.conf"
   ].each do |filename|
