@@ -1,3 +1,4 @@
-location /alminium {
+<%-@alminium_rack_path||="/alminium"%>
+location <%=@alminium_rack_path%> {
   rewrite ^/(.*)?$ https://$host$uri last;
 }
