@@ -3,8 +3,8 @@ include_recipe "centos::nginx"
 include_recipe "centos::apache"
 
 [
-  "etc/nginx/conf.d/default/svn.conf",
-  "etc/nginx/conf.d/ssl/svn.conf"
+  "etc/nginx/conf.d/default/vcs.conf",
+  "etc/nginx/conf.d/ssl/vcs.conf"
   ].each do |filename|
   filepath = "/#{filename}"
   template filepath do

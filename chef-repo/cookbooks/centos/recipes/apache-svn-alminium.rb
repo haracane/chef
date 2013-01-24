@@ -21,26 +21,8 @@ end
   end
 end
 
-link "/var/opt/alminium/git" do
-  to "/var/git"
-end
-
 link "/var/opt/alminium/svn" do
   to "/var/svn"
-end
-
-[
-  "etc/httpd/conf.d/svn-alminium.conf"
-  ].each do |filename|
-  filepath = "/#{filename}"
-  template filepath do
-    source "#{filename}.erb"
-  end
-  file filepath do
-    owner "root"
-    group "root"
-    mode  "0644"
-  end
 end
 
 service "httpd" do
