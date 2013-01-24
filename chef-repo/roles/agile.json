@@ -17,8 +17,8 @@
   "chef_type": "role",
   "run_list": [
     "recipe[centos::nginx-unicorn-alminium]",
-    "recipe[centos::nginx-fcgiwrap-git]",
+    "recipe[centos::apache-fcgiwrap-git-alminium]",
     "recipe[centos::apache-svn-alminium]",
-    "recipe[centos::nginx-apache-svn]"
+    "recipe[centos::nginx-apache-vcs]"
   ]
 }
