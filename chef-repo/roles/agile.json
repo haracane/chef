@@ -4,7 +4,7 @@
   "default_attributes": {
     "variables" : {
       "alminium_rack_path" : "/alminium",
-      "fcgiwrap_user" : "git",
+      "fcgiwrap_user" : "apache",
       "httpd_port" : 8000,
       "httpd_ssl_port" : 8443
     }
