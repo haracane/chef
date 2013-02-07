@@ -1,39 +1,22 @@
+<%-
+  @hadoop_config ||= {}
+  @hadoop_config["hdfs-site.xml"] ||= {}
+  @hadoop_config["hdfs-site.xml"]["dfs.name.dir"] ||= "${hadoop.tmp.dir}/dfs/name"
+  @hadoop_config["hdfs-site.xml"]["dfs.data.dir"] ||= "${hadoop.tmp.dir}/dfs/data"
+  @hadoop_config["hdfs-site.xml"]["dfs.replication"] ||= 3
+  @hadoop_config["hdfs-site.xml"]["dfs.permissions"] ||= "false"
+  @hadoop_config["hdfs-site.xml"]["dfs.datanode.max.xcievers"] ||= 2048
+%>
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
+  <%-@hadoop_config["hdfs-site.xml"].each_pair do |key, val|%>
   <property>
-    <name>dfs.replication</name>
-    <value><%= @replication %></value>
-    <description>DataNode上のレプリケーション数</description>
-   </property>
-  <property>
-     <name>dfs.permissions</name>
-     <value>false</value>
+    <name><%=key%></name>
+    <value><%=val%></value>
   </property>
-  <property>
-     <!-- specify this so that running 'hadoop namenode -format' formats the right dir -->
-     <name>dfs.name.dir</name>
-     <value>${hadoop.tmp.dir}/dfs/name</value>
-      <description>
-      	default: /tmp/hadoop-${user.name}/dfs/name
-      	cloudera: /var/lib/hadoop-VERSION/cache/${user.name}/dfs/name
-      </description>
-  </property>
-  <property>
-    <name>dfs.data.dir</name>
-    <value><%=@data_node_dirs.map{|dirpath|"#{dirpath}/hadoop-0.20/cache/${user.name}/dfs/data"}.join(",")%></value>
-    <description>
-    	default: /tmp/hadoop-${user.name}/dfs/name
-    	cloudera: /var/lib/hadoop-VERSION/cache/${user.name}/dfs/data
-    </description>
-  </property>
-
-  <property>
-     <name>dfs.datanode.max.xcievers</name>
-     <value>2048</value>
-  </property>
-
+  <%-end%>
 </configuration>

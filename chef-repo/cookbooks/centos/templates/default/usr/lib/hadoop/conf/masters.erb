@@ -1,1 +1,3 @@
-<%= @hadoop_master %>
+<%- @hadoop_config["masters"].each do |master| %>
+<%= master %>
+<%- end %>

@@ -1,0 +1,15 @@
+{
+  "name": "hadoop-standalone",
+  "json_class": "Chef::Role",
+  "default_attributes": {},
+  "override_attributes": {},
+  "description": "install hadoop-standalone",
+  "chef_type": "role",
+  "run_list": [
+    "recipe[centos::attributes-hadoop-standalone]",
+    "recipe[centos::hadoop-cdh3u5]",
+    "recipe[centos::hadoop-master-cdh3u5]",
+    "recipe[centos::hadoop-slave-cdh3u5]",
+    "recipe[centos::hadoop-cdh3u5-conf]"
+  ]
+}
