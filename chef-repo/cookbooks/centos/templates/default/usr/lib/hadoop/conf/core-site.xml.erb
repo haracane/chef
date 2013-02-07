@@ -3,17 +3,8 @@
 
 <!-- Put site-specific property overrides in this file. -->
 
-<%-
-  @hadoop_config ||= {}
-  @hadoop_config["core-site.xml"] ||= {}
-  @hadoop_config["core-site.xml"]["fs.default.name"] ||= "hdfs://#{node[:hostname]}:8020"
-  @hadoop_config["core-site.xml"]["hadoop.tmp.dir"] ||= "/var/lib/hadoop-0.20/cache/${user.name}"
-  @hadoop_config["core-site.xml"]["io.compression.codecs"] ||= "org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.BZip2Codec"
-  @hadoop_config["core-site.xml"]["webinterface.private.actions"] ||= "true"
-%>
-
 <configuration>
-  <%-@hadoop_config["core-site.xml"].each_pair do |key, val|%>
+  <%-@hadoop_config["core-site.xml"].sort.each do |key, val|%>
   <property>
     <name><%=key%></name>
     <value><%=val%></value>

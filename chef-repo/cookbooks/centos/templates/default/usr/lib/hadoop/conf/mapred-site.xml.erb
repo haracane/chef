@@ -2,21 +2,8 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
 <!-- Put site-specific property overrides in this file. -->
-<%- processor_count = `cat /proc/cpuinfo | grep processor | wc -l`.chomp.to_i %>
-
-<%-
-  @hadoop_config ||= {}
-  @hadoop_config["mapred-site.xml"] ||= {}
-  @hadoop_config["mapred-site.xml"]["mapred.job.tracker"] ||= "#{node[:hostname]}:8021"
-  @hadoop_config["mapred-site.xml"]["mapred.map.tasks.speculative.execution"] ||= "false"
-  @hadoop_config["mapred-site.xml"]["mapred.tasktracker.map.tasks.maximum"] ||= processor_count * 3 / 2
-  @hadoop_config["mapred-site.xml"]["mapred.tasktracker.reduce.tasks.maximum"] ||= processor_count
-  @hadoop_config["mapred-site.xml"]["mapred.userlog.retain.hours"] ||= 1
-  @hadoop_config["mapred-site.xml"]["mapred.task.timeout"] ||= 1800000
-%>
-
 <configuration>
-  <%-@hadoop_config["mapred-site.xml"].each_pair do |key, val|%>
+  <%-@hadoop_config["mapred-site.xml"].sort.each do |key, val|%>
   <property>
     <name><%=key%></name>
     <value><%=val%></value>
