@@ -19,6 +19,7 @@
     "recipe[centos::nginx-unicorn-alminium]",
     "recipe[centos::apache-fcgiwrap-git-alminium]",
     "recipe[centos::apache-svn-alminium]",
-    "recipe[centos::nginx-apache-vcs]"
+    "recipe[centos::nginx-apache-vcs]",
+    "recipe[centos::auto-create-alminium-vcs]"
   ]
 }
