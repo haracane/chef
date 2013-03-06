@@ -1,6 +1,6 @@
-include_recipe "centos::hadoop-cdh3u5"
-include_recipe "centos::hadoop-master-cdh3u5"
-include_recipe "centos::hadoop-slave-cdh3u5"
+include_recipe "hadoop::hadoop-cdh3u5"
+include_recipe "hadoop::hadoop-master-cdh3u5"
+include_recipe "hadoop::hadoop-slave-cdh3u5"
 
 directory "/var/lib/hadoop-0.20" do
   owner "root"

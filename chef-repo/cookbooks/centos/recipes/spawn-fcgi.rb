@@ -1,4 +1,4 @@
-include_recipe "centos::yum-repos-epel"
+include_recipe "epel::yum-repos-epel"
 
 package "spawn-fcgi" do
   action :install
