@@ -1,5 +1,5 @@
 include_recipe "epel::yum-repos-epel"
 
-package "spawn-fcgi" do
+package "python-devel" do
   action :install
 end

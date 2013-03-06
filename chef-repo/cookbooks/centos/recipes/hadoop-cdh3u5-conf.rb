@@ -1,5 +1,3 @@
-
-
 directory "/var/lib/hadoop-0.20" do
   owner "root"
   group "root"
